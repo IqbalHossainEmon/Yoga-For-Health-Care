@@ -1,0 +1,14 @@
+.header-1 {
+  margin-top: 15vh;
+  padding-left: 2vh;
+  padding: 2vh;
+  background-color: purple;
+}
+.header-2 {
+  display: flex;
+}
+@media screen and (max-width: 800px) {
+  .header-2 {
+    display: block;
+  }
+}

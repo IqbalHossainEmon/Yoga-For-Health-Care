@@ -1,5 +1,5 @@
 .card:hover img {
-  transform: rotate(5deg) scale(1.1);
+  transform: rotate(3deg) scale(1.001);
 }
 .card img {
   transition: transform 1s;

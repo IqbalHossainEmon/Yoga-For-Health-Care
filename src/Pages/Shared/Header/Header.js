@@ -1,9 +1,11 @@
 import React from "react";
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Container, Nav, Navbar, Button } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 import "./Header.css";
 
 const Header = () => {
+  const { user, logOut } = useAuth();
   return (
     <Navbar
       collapseOnSelect
@@ -22,23 +24,31 @@ const Header = () => {
             <Nav.Link as={NavLink} to="/home">
               Home
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/features">
-              Features
+            <Nav.Link as={NavLink} to="/whoWeAre">
+              Who We Are
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/pricing">
-              Pricing
+            <Nav.Link as={NavLink} to="/contact">
+              Contact
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/Login">
-              Login
-            </Nav.Link>
+            {!user.displayName && (
+              <Nav.Link as={NavLink} to="/Login">
+                Login
+              </Nav.Link>
+            )}
           </Nav>
-          <Navbar.Text className=" mx-2">
-            Signed in as :
-            <Link className="text-decoration-none" to="/login">
-              {" "}
-              Mark Otto
-            </Link>
-          </Navbar.Text>
+          {user.displayName && (
+            <Navbar.Text className="text-warning mx-2">
+              Signed in as :
+              <Link className="text-decoration-none" to="/login">
+                {user.displayName}
+              </Link>
+            </Navbar.Text>
+          )}
+          {user.displayName && (
+            <Button variant="outline-primary" onClick={logOut}>
+              LogOut
+            </Button>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>

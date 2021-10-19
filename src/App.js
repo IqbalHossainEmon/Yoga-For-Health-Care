@@ -11,10 +11,12 @@ import Registration from "./Pages/Login/Registration/Registration";
 import WhoWeAre from "./Pages/WhoWeAre/WhoWeAre/WhoWeAre";
 import Contact from "./Pages/Contact/Contact";
 import Details from "./Pages/Home/Details/Details";
+import AuthProvider from "./Pages/Context/AuthProvider";
+import PrivateRoute from "./Pages/PrivateRoute/PrivateRoute";
 
 function App() {
   return (
-    <div>
+    <AuthProvider>
       <BrowserRouter>
         <Header />
         <Switch>
@@ -33,22 +35,22 @@ function App() {
           <Route path="/commingSoon">
             <CommingSoon />
           </Route>
-          <Route path="/whoWeAre">
+          <PrivateRoute path="/whoWeAre">
             <WhoWeAre />
-          </Route>
+          </PrivateRoute>
           <Route path="/contact">
             <Contact />
           </Route>
-          <Route path="/details/:id">
+          <PrivateRoute path="/details/:id">
             <Details />
-          </Route>
+          </PrivateRoute>
           <Route path="*">
             <NotFound />
           </Route>
         </Switch>
       </BrowserRouter>
       <Footer />
-    </div>
+    </AuthProvider>
   );
 }
 

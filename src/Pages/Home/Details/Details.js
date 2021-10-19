@@ -2,17 +2,20 @@ import React from "react";
 import "./details.css";
 import { useParams } from "react-router";
 import useData from "../../../hooks/useData";
+import { Link } from "react-router-dom";
+import { Button, ButtonGroup } from "react-bootstrap";
 
 const Details = () => {
   const { id } = useParams();
-  let service = {};
   const data = useData();
+  console.log(data);
+  let service = {};
   if (data[3]) {
-    data.map((x) => {
+    for (const x of data) {
       if (x.id === parseInt(id)) {
         service = x;
       }
-    });
+    }
   }
   console.log(service.img);
   const { img, name, description } = service;
@@ -25,10 +28,17 @@ const Details = () => {
       url(${img})`,
       }}
     >
-      <div className="text-center">
-        <img src={img} alt="" />
-        <h1>{name}</h1>
-        <p>{description}</p>
+      <div className=" text-center">
+        <div>
+          <div className="text-center">
+            <img src={img} alt="" />
+            <h1>{name}</h1>
+            <p>{description}</p>
+          </div>
+        </div>
+        <Link to="/home">
+          <Button variant="outline-primary">Go to Home</Button>
+        </Link>
       </div>
     </div>
   );
