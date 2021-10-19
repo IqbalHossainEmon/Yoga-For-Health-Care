@@ -1,0 +1,19 @@
+.registration {
+  background-image: url(https://i.ibb.co/znvrkD7/register.png);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.registration div {
+  width: 60vh;
+}
+
+@media screen and (max-width: 600px) {
+  .registration div {
+    width: auto;
+  }
+}

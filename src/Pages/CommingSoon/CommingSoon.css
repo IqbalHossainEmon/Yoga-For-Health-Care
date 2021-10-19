@@ -1,0 +1,20 @@
+.comming-soon {
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  display: flex;
+  background-position: center;
+  justify-content: center;
+  align-items: center;
+  height: 102vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(https://i.ibb.co/pK9Vm5z/comming-Soon.png);
+  color: white;
+}
+
+@media only screen and (max-width: 600px) {
+  .comming-soon {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url(https://i.ibb.co/CbB5gQd/comming-Soon-phone.jpg);
+  }
+}

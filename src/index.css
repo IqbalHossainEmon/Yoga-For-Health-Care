@@ -1,0 +1,15 @@
+/*====================
+      font import
+===================== */
+@import url("https://fonts.googleapis.com/css2?family=Caveat&family=Dancing+Script&family=Montserrat&family=Italianno&display=swap");
+.navbar-font {
+  font-family: "Italianno", cursive;
+}
+.dance-font {
+  font-family: "Dancing Script", cursive;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif !important;
+}

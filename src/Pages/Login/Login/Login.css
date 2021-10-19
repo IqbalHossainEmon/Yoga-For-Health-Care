@@ -1,0 +1,27 @@
+.login {
+  background-image: url(https://i.ibb.co/M99pvN5/login.png);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.login div {
+  width: 50vh;
+  text-align: center;
+}
+.external-link {
+  background-color: rgba(0, 0, 0, 0.719);
+  padding: 10px;
+  margin-top: 10px;
+}
+@media screen and (max-width: 600px) {
+  .login {
+    background-image: url(https://i.ibb.co/ts87j2B/Yannic-laderach-Dqx4-XWu-Xu7w-unsplash.jpg);
+  }
+  .login div {
+    width: auto;
+  }
+}
