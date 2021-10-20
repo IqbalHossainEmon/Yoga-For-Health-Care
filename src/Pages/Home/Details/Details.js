@@ -3,12 +3,13 @@ import "./details.css";
 import { useParams } from "react-router";
 import useData from "../../../hooks/useData";
 import { Link } from "react-router-dom";
-import { Button, ButtonGroup } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const Details = () => {
   const { id } = useParams();
   const data = useData();
-  console.log(data);
   let service = {};
   if (data[3]) {
     for (const x of data) {
@@ -17,7 +18,6 @@ const Details = () => {
       }
     }
   }
-  console.log(service.img);
   const { img, name, description } = service;
 
   return (
@@ -37,7 +37,9 @@ const Details = () => {
           </div>
         </div>
         <Link to="/home">
-          <Button variant="outline-primary">Go to Home</Button>
+          <Button variant="outline-primary">
+            <FontAwesomeIcon icon={faArrowLeft} /> Go to Home
+          </Button>
         </Link>
       </div>
     </div>

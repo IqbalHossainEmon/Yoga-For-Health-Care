@@ -1,5 +1,6 @@
 import React from "react";
-import { FloatingLabel, Form } from "react-bootstrap";
+import { Button, FloatingLabel, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./Contact.css";
 
 const Contact = () => {
@@ -25,8 +26,11 @@ const Contact = () => {
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label>Write what you want to say</Form.Label>
-          <Form.Control as="textarea" rows={3} />
+          <Form.Control as="textarea" rows={7} />
         </Form.Group>
+        <Link to="./commingSoon">
+          <Button variant="outline-primary">Submit</Button>
+        </Link>
       </Form>
     </div>
   );

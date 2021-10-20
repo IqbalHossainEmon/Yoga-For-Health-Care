@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FloatingLabel, Form, Button } from "react-bootstrap";
+import { Form, Button, Col, Row } from "react-bootstrap";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import "./Login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,70 +9,113 @@ import useAuth from "../../../hooks/useAuth";
 const Login = () => {
   const location = useLocation();
   const history = useHistory();
-  let { from } = location.state || { from: { pathname: "/" } };
-  console.log(location);
+  const [validated, setValidated] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passVali, setPassVali] = useState("-");
 
+  const redirect_uri = location.state?.from?.pathname || "/";
   const {
     signInUsingGoogle,
     signInUsingGithub,
-    signInUsingPassword,
     setError,
     error,
+    setLoading,
+    signInUsingPass,
+    setUser,
   } = useAuth();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.stopPropagation();
+    } else {
+      if (!/(?=.*[0-9].*[0-9])/.test(password)) {
+        setPassVali("Ensure string has two digits.");
+        return;
+      } else if (!/.{8,32}/.test(password)) {
+        setPassVali("Password should be at least 8 characters");
+        return;
+      } else {
+        debugger;
+        signInUsingPass(email, password)
+          .then((res) => {
+            setUser(res.user);
+            history.push(redirect_uri);
+          })
+          .catch((error) => setError(error.message));
+      }
+    }
+    setValidated(true);
+  };
+
+  const handleEmail = (e) => setEmail(e.target.value);
+  const handlePassword = (e) => {
+    if (!/(?=.*[0-9].*[0-9])/.test(e.target.value)) {
+      setPassVali("Ensure string has two digits.");
+      return;
+    } else if (!/.{8,32}/.test(e.target.value)) {
+      setPassVali("Password should be at least 8 characters");
+      return;
+    } else {
+      setPassVali("");
+      setPassword(e.target.value);
+    }
+  };
 
   const handleGoogleSignIn = () => {
     setError("");
     signInUsingGoogle()
-      .then(() => history.push(from))
-      .catch((error) => setError(error.message));
+      .then(() => history.push(redirect_uri))
+      .catch((error) => setError(error.message))
+      .finally(() => setLoading(false));
   };
   const handleGithubSignIn = () => {
     setError("");
     signInUsingGithub()
-      .then(() => history.push(from))
-      .catch((error) => setError(error.message));
-  };
-  const handleSubmit = () => {
-    setError("");
-    signInUsingPassword(email, password);
+      .then(() => history.push(redirect_uri))
+      .catch((error) => setError(error.message))
+      .finally(() => setLoading(false));
   };
 
-  const handleEmail = (e) => setEmail(e.target.value);
-  const handlePassword = (e) => setPassword(e.target.value);
   return (
-    <div className="login">
+    <div className="login text-white">
       <div>
-        <h2 className="mb-5">Please Login</h2>
-        <FloatingLabel
-          controlId="floatingInput"
-          label="Email address"
-          className="mb-3"
-        >
-          <Form.Control
-            onBlur={handleEmail}
-            type="email"
-            placeholder="name@example.com"
-          />
-        </FloatingLabel>
-        <FloatingLabel controlId="floatingPassword" label="Password">
-          <Form.Control
-            onBlur={handlePassword}
-            type="password"
-            placeholder="Password"
-          />
-        </FloatingLabel>
-        <p className="text-danger">{error}</p>
-        <Button
-          onClick={handleSubmit}
-          variant="primary"
-          className="mt-3"
-          type="submit"
-        >
-          Submit
-        </Button>
+        <h2 className="mb-3">Please Login</h2>
+        <div>
+          <Form noValidate validated={validated} onSubmit={handleSubmit}>
+            <Row className="mb-3">
+              <Form.Group as={Col} controlId="validationCustom01">
+                <Form.Label>Your Email</Form.Label>
+                <Form.Control
+                  onBlur={handleEmail}
+                  required
+                  type="email"
+                  placeholder="Your Email"
+                />
+              </Form.Group>
+            </Row>
+            <Row>
+              <Form.Group as={Col} controlId="validationCustom02">
+                <Form.Label>Your Password</Form.Label>
+                <Form.Control
+                  onChange={handlePassword}
+                  required
+                  type="password"
+                  placeholder="Password"
+                />
+                <span className="text-danger">
+                  {error}
+                  {passVali}
+                </span>
+              </Form.Group>
+            </Row>
+            <Button className="mt-2" type="submit">
+              Submit
+            </Button>
+          </Form>
+        </div>
         <div className="external-link">
           <p className="text-white mt-3">
             New Here ?

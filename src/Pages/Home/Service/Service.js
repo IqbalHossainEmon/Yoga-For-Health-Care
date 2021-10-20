@@ -2,6 +2,8 @@ import React from "react";
 import { Card, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Service.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const Service = (props) => {
   const { img, description, name, id } = props.service;
@@ -16,7 +18,9 @@ const Service = (props) => {
             <Card.Text>{description.slice(0, 160)}...</Card.Text>
           </Card.Body>
           <Link to={`/details/${id}`}>
-            <Button variant="outline-warning">Details</Button>
+            <Button variant="outline-warning">
+              Details <FontAwesomeIcon icon={faArrowRight} />
+            </Button>
           </Link>
         </Card>
       </Col>
