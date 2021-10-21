@@ -22,7 +22,7 @@ const Details = () => {
 
   return (
     <div
-      className="details d-flex justify-content-center align-items-center"
+      className="details pt-5 d-flex justify-content-center align-items-center"
       style={{
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
       url(${img})`,
