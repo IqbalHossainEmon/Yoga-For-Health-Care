@@ -5,6 +5,7 @@ import "./Login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
 import useAuth from "../../../hooks/useAuth";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const location = useLocation();
@@ -81,6 +82,9 @@ const Login = () => {
 
   return (
     <div className="login text-white">
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
       <div>
         <h2 className="mb-3">Please Login</h2>
         <div>

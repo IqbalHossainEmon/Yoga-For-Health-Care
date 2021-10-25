@@ -1,11 +1,15 @@
 import React from "react";
 import { Button, FloatingLabel, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import "./Contact.css";
 
 const Contact = () => {
   return (
     <div className="contact">
+      <Helmet>
+        <title>Contact</title>
+      </Helmet>
       <div className="header-1 text-white">
         <h1>Contact</h1>
         <p className="bg-warning text-dark ps-3">

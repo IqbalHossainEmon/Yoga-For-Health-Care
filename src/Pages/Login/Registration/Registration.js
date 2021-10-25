@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
+import { Helmet } from "react-helmet";
 import { Link, useHistory } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import "./Registration.css";
@@ -62,6 +63,9 @@ const Registration = () => {
 
   return (
     <div className="registration">
+      <Helmet>
+        <title>Register</title>
+      </Helmet>
       <div className="mx-auto">
         <h2 className="text-white text-center mb-3">Please Register</h2>
         <Form

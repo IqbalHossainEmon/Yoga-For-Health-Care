@@ -1,10 +1,14 @@
 import React from "react";
 import { Card, Col, Row } from "react-bootstrap";
+import { Helmet } from "react-helmet";
 import "./WhoWeAre.css";
 
 const WhoWeAre = () => {
   return (
     <div className="who-we-are">
+      <Helmet>
+        <title>Who we are</title>
+      </Helmet>
       <div className="header-1">
         <h1 className="text-white">Who we are</h1>
         <h4 className="text-white">A small Yoga studio with 3 trainers</h4>
